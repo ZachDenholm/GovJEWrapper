@@ -2,6 +2,7 @@
 var webserver = require('gulp-webserver');
 var headerfooter = require('gulp-headerfooter');
 var sass = require('gulp-sass');
+const imagemin = require('gulp-imagemin');
 
 gulp.task('webserver', function() {
   gulp.src('./')
@@ -26,9 +27,16 @@ gulp.task('scss', function() {
         .pipe(gulp.dest('./css'));
 });
 
+gulp.task('images', () =>
+    gulp.src('./images/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('./public/images'))
+);
+
 
 gulp.task('default', function() {
     gulp.start('webserver');
+    gulp.watch('./images/*', ['images']); 
     gulp.watch('./content/*.html', ['headerfooter']); 
     gulp.watch('./scss/**/*.scss', ['scss']); 
 });
