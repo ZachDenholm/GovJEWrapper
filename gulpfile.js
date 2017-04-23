@@ -3,6 +3,9 @@ var webserver = require('gulp-webserver');
 var headerfooter = require('gulp-headerfooter');
 var sass = require('gulp-sass');
 const imagemin = require('gulp-imagemin');
+var concat = require('gulp-concat');  
+var rename = require('gulp-rename');  
+var uglify = require('gulp-uglify');  
 
 gulp.task('webserver', function() {
   gulp.src('./')
@@ -13,6 +16,8 @@ gulp.task('webserver', function() {
       fallback: 'form.html'
     }));
 });
+
+
 
 gulp.task('headerfooter', function () {
     gulp.src('./content/*.html')
@@ -33,10 +38,19 @@ gulp.task('images', () =>
         .pipe(gulp.dest('./public/images'))
 );
 
+gulp.task('scripts', function() {  
+    return gulp.src('./js/**/*.js')
+        .pipe(concat('GovJE.js'))
+        .pipe(gulp.dest('./public/js'))
+        .pipe(rename('GovJE.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./public/js'));
+});
 
 gulp.task('default', function() {
     gulp.start('webserver');
     gulp.watch('./images/*', ['images']); 
     gulp.watch('./content/*.html', ['headerfooter']); 
     gulp.watch('./scss/**/*.scss', ['scss']); 
+    gulp.watch('./js/**/*.js', ['scripts']); 
 });

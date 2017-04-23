@@ -8,11 +8,14 @@
     "gulp-headerfooter": "^1.0.3",
     "gulp-webserver": "^0.9.1",
     "gulp-sass": "^3.1.0",
-    "gulp-imagemin": "^3.2.0"
+    "gulp-imagemin": "^3.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.1.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
 }
