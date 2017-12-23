@@ -32,6 +32,11 @@ gulp.task('scss', function() {
         .pipe(gulp.dest('./css'));
 });
 
+gulp.task('css', function() {
+    gulp.src('./css/**/*.css')
+        .pipe(gulp.dest('./public/css'));        
+}); 
+
 gulp.task('images', () =>
     gulp.src('./images/*')
         .pipe(imagemin())
@@ -52,5 +57,6 @@ gulp.task('default', function() {
     gulp.watch('./images/*', ['images']); 
     gulp.watch('./content/*.html', ['headerfooter']); 
     gulp.watch('./scss/**/*.scss', ['scss']); 
+    gulp.watch('./css/**/*.css', ['css']);     
     gulp.watch('./js/**/*.js', ['scripts']); 
 });
